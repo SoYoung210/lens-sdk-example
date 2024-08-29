@@ -1,3 +1,65 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "jsx-a11y",
+    "@typescript-eslint",
+    "prettier"
+  ],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "semi": true,
+        "tabWidth": 2,
+        "trailingComma": "es5",
+        "printWidth": 100,
+        "bracketSpacing": true,
+        "arrowParens": "always",
+        "endOfLine": "auto"
+      }
+    ],
+    "react/display-name": "off",
+    "react/react-in-jsx-scope": "off",
+    "react/prop-types": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      {
+        "argsIgnorePattern": "^_",
+        "varsIgnorePattern": "^_"
+      }
+    ],
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": [
+          "Link"
+        ],
+        "specialLink": [
+          "hrefLeft",
+          "hrefRight"
+        ],
+        "aspects": [
+          "invalidHref",
+          "preferButton"
+        ]
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

@@ -1,113 +1,136 @@
-import Image from "next/image";
+'use client';
+
+import { ActionBar } from '../components/ui/ActionBar';
+import Link from 'next/link';
+import {
+  PageHeading,
+  PageHeadingDescription,
+  PageHeadingTitle,
+} from '../components/ui/PageHeading';
+import { Button } from '../components/ui/Button';
+import {
+  ProfileListContent,
+  ProfileListSelectButton,
+  ProfileList,
+} from '../domains/auth/ProfileList';
+import { Separator } from '../components/ui/Separator';
+import { ConnectWalletOrLenProfile } from '../domains/auth/ConnectWalletAndProfileList';
+import { forwardRef, useState } from 'react';
+
+import { ExploreProfilesSection } from '../pages/root/ExploreProfilesSection';
+import { RecommendedProfilesSection } from '../pages/root/RecommendedProfilesSection';
+import { BookOpenIcon, CompassIcon } from 'lucide-react';
+import { usePathname } from 'next/navigation';
+import { If } from '../components/utils/If';
+import { useUpdate } from '../hooks/useUpdate';
+import { cn } from '../utils/style';
 
 export default function Home() {
+  const [activeBarMenu, setActiveBarMenu] = useState('default');
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <div className="min-h-screen bg-[#f4f5f6]">
+      <div
+        className="pointer-events-none fixed inset-0 z-1 w-full"
+        style={{
+          height: 180,
+          background: `linear-gradient(rgba(66, 144, 243, 0.2) 0%, rgba(206, 127, 243, 0.1) 52.58%, rgba(248, 236, 215, 0) 100%)`,
+        }}
+      />
+      <main>
+        <PageHeading>
+          <PageHeadingTitle>
+            <h1>Discover</h1>
+          </PageHeadingTitle>
+          <PageHeadingDescription>
+            <div>
+              Explore Lens Profiles by sorting them based on various criteria. Discover recommended
+              profiles tailored to your interests.
+            </div>
+          </PageHeadingDescription>
+        </PageHeading>
+
+        <div className="flex flex-col gap-7 pb-24">
+          <ExploreProfilesSection />
+          <RecommendedProfilesSection />
         </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+      </main>
+      {/* Fixed ActionBar */}
+      <ActionBar value={activeBarMenu} onValueChange={setActiveBarMenu}>
+        <ActionBar.List>
+          <ActionBar.Item value="navbar-link-home" label="home" itemOnly>
+            <NavBarLinkButton href="/">
+              <CompassIcon size={24} />
+            </NavBarLinkButton>
+          </ActionBar.Item>
+          <ActionBar.Item value="nav-bar-item-publication" label="Coming Soon!" itemOnly>
+            <NavBarLinkButton wip href="">
+              <BookOpenIcon />
+            </NavBarLinkButton>
+          </ActionBar.Item>
+          <Separator />
+          <ActionBar.Item value="connect-wallet" label="Connect the Wallet!">
+            <ConnectWalletOrLenProfile />
+          </ActionBar.Item>
+        </ActionBar.List>
+        <ProfileList onSuccess={() => setActiveBarMenu('default')}>
+          <ActionBar.Content value="connect-wallet" bottomRightSlot={<ProfileListSelectButton />}>
+            <ActionBar.ContentHeader>All Profiles</ActionBar.ContentHeader>
+            <ActionBar.ContentMain>
+              <ProfileListContent />
+            </ActionBar.ContentMain>
+          </ActionBar.Content>
+        </ProfileList>
+      </ActionBar>
+    </div>
   );
 }
+
+interface NavBarLinkButtonProps {
+  href: string;
+  children: React.ReactNode;
+  wip?: boolean;
+  className?: string;
+}
+const NavBarLinkButton = forwardRef<HTMLButtonElement, NavBarLinkButtonProps>((props, ref) => {
+  const { href, children, wip, className, ...restProps } = props;
+  const pathname = usePathname();
+  const isActive = pathname === href;
+
+  const [key, update] = useUpdate(-1);
+
+  if (wip) {
+    return (
+      <Button
+        key={key}
+        ref={ref}
+        {...restProps}
+        onClick={update}
+        className={cn(
+          className,
+          `relative text-[#131517A3] ${key !== -1 ? 'animate-shake-x' : ''}`
+        )}
+        variant="ghost"
+        size="icon"
+      >
+        {children}
+      </Button>
+    );
+  }
+
+  return (
+    <Button
+      ref={ref}
+      className="relative"
+      variant={isActive ? 'secondary' : 'ghost'}
+      size="icon"
+      asChild
+    >
+      <Link href={href} {...restProps}>
+        {children}
+        <If condition={isActive}>
+          <span className="absolute bottom-0 left-2/4-translate-x-1/2 w-1 h-1 bg-sky-600 rounded-full" />
+        </If>
+      </Link>
+    </Button>
+  );
+});
