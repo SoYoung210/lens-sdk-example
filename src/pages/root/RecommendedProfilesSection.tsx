@@ -30,7 +30,7 @@ export function RecommendedProfilesSection() {
       />
       <Suspense
         fallback={
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={'loader'}
               initial={{ opacity: 0, y: 4 }}
@@ -40,7 +40,7 @@ export function RecommendedProfilesSection() {
             >
               <PageContent.ScrollControl>
                 <PageContent.ScrollControlContent>
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 pb-5">
                     {createArray(5, (index) => {
                       return <VerticalImageCard.Skeleton key={index} />;
                     })}

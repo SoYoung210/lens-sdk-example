@@ -12,7 +12,7 @@ export const ConnectWalletOrLenProfile = forwardRef<
 >((props, ref) => {
   return (
     <ConnectWallet defaultFallback={<Fallback />} {...props} ref={ref}>
-      <Suspense fallback={<div>load</div>}>
+      <Suspense fallback={<Fallback />}>
         <LensAccount size={28} anonymousFallback={<Fallback {...props} ref={ref} />} />
       </Suspense>
     </ConnectWallet>

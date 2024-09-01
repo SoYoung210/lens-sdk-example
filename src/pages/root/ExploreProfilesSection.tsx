@@ -33,6 +33,7 @@ export function ExploreProfilesSection() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               <DropdownMenuRadioGroup
+                value={orderBy}
                 onValueChange={(v) => {
                   setOrderBy(v as ExploreProfilesOrderByType);
                 }}
@@ -51,7 +52,7 @@ export function ExploreProfilesSection() {
       />
       <Suspense
         fallback={
-          <AnimatePresence mode="wait">
+          <AnimatePresence>
             <motion.div
               key={`${orderBy}-loader`}
               initial={{ opacity: 0, y: 4 }}
@@ -61,7 +62,7 @@ export function ExploreProfilesSection() {
             >
               <PageContent.ScrollControl>
                 <PageContent.ScrollControlContent>
-                  <div className="flex space-x-4">
+                  <div className="flex space-x-4 pb-5">
                     {createArray(5, (index) => {
                       return <VerticalImageCard.Skeleton key={index} />;
                     })}
