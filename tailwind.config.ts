@@ -99,7 +99,7 @@ const config = {
     require('tailwindcss-animate'),
     require('@tailwindcss/typography'),
     require('daisyui'),
-    function ({ addUtilities }: PluginAPI) {
+    function ({ addUtilities, addBase, theme }: PluginAPI) {
       const newUtilities = {
         'page-heading': {
           css: {
@@ -143,6 +143,29 @@ const config = {
           },
         },
       };
+
+      const newBase = {
+        '*': {
+          scrollbarWidth: 'thin',
+          scrollbarColor: `${theme('colors.gray.300', '#888')} transparent`,
+        },
+        '*::-webkit-scrollbar, *::-webkit-scrollbar:hover': {
+          width: '8px !important',
+          height: '8px !important',
+        },
+        '*::-webkit-scrollbar-track, *::-webkit-scrollbar-track:hover': {
+          backgroundColor: 'transparent !important',
+        },
+        '*::-webkit-scrollbar-thumb, *::-webkit-scrollbar-thumb:hover': {
+          backgroundColor: `${theme('colors.gray.200', '#888')} !important`,
+          borderRadius: '50px !important',
+        },
+        '*::-webkit-scrollbar, *::-webkit-scrollbar-track, *::-webkit-scrollbar-thumb': {
+          transition: 'none !important',
+        },
+      };
+
+      addBase(newBase);
       addUtilities(newUtilities);
     },
   ],
