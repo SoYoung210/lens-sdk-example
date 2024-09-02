@@ -32,9 +32,9 @@ Open [http://localhost:3000](http://localhost:3000) to view the app in your brow
 
 Click the 👀 button in the bottom floating action bar.
 
-### 2. Choose your profile
+### 2. Select Profile
 
-![choose profile](./assets/choose-profile.webp)
+![select profile](./assets/select-profile.webp)
 
 After connecting your wallet, select a profile from the list. If you don't have a Lens profile, you can create one [here](https://www.lens.xyz/).
 
