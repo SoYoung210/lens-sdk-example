@@ -91,6 +91,10 @@ interface NavBarLinkButtonProps {
   wip?: boolean;
   className?: string;
 }
+
+const activeClassName = 'bg-black/[.03] border border-[rgba(0,0,0,0.03)]';
+const commonButtonClass =
+  'relative rounded-[10px] hover:border hover:bg-black/[.03] hover:border-[rgba(0,0,0,0.03)]';
 const NavBarLinkButton = forwardRef<HTMLButtonElement, NavBarLinkButtonProps>((props, ref) => {
   const { href, children, wip, className, ...restProps } = props;
   const pathname = usePathname();
@@ -107,7 +111,8 @@ const NavBarLinkButton = forwardRef<HTMLButtonElement, NavBarLinkButtonProps>((p
         onClick={update}
         className={cn(
           className,
-          `relative text-[#131517A3] ${key !== -1 ? 'animate-shake-x' : ''}`
+          commonButtonClass,
+          `text-[#131517A3] ${key !== -1 ? 'animate-shake-x' : ''}`
         )}
         variant="ghost"
         size="icon"
@@ -120,7 +125,7 @@ const NavBarLinkButton = forwardRef<HTMLButtonElement, NavBarLinkButtonProps>((p
   return (
     <Button
       ref={ref}
-      className="relative"
+      className={cn(className, commonButtonClass, isActive ? activeClassName : '')}
       variant={isActive ? 'secondary' : 'ghost'}
       size="icon"
       asChild

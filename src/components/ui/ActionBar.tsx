@@ -35,7 +35,7 @@ export const ActionBar = (props: ActionBarProps) => {
       <div className="fixed z-50 bottom-5 left-0 right-0 flex justify-center items-center">
         <motion.div
           layout
-          className="bg-white rounded-lg overflow-hidden"
+          className="bg-white rounded-2xl overflow-hidden"
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
           style={{
             boxShadow: `rgba(0, 0, 0, 0.24) 0px 8px 30px 0px, rgba(0, 0, 0, 0.12) 0px 6px 16px 0px, rgba(0, 0, 0, 0.05) 0px 0px 0px 1px, rgba(0, 0, 0, 0.02) 0px 1px 0px 0px`,
@@ -65,7 +65,7 @@ export const ActionBarList = ({ children }: { children: ReactNode }) => {
       }}
       layout="position"
       exit={{ opacity: 0 }}
-      className="grid grid-flow-col w-auto items-center p-2 gap-1"
+      className="grid grid-flow-col w-auto items-center py-2 pl-2.5 pr-[0.8rem] gap-1"
     >
       {children}
     </motion.div>
@@ -131,12 +131,7 @@ export const ActionBarContent = ({ value, children, bottomRightSlot }: ActionBar
       transition={{ duration: 0.2 }}
     >
       <div>{children}</div>
-      <hr
-        className="h-px w-full justify-self-end border-none "
-        style={{
-          backgroundColor: 'rgba(0, 0, 0, 0.09)',
-        }}
-      />
+      <hr className="h-px w-full justify-self-end border-none bg-black/[.09]" />
       <div className="flex shrink-0 items-center justify-between gap-1.5 overflow-hidden p-2 w-full min-w-[520px]">
         <Button
           aria-label="Back To Page Navigation Menu"
