@@ -1,7 +1,7 @@
 import { ExploreProfilesOrderByType } from '@lens-protocol/react-web';
-import { Suspense, useState } from 'react';
+import { useState } from 'react';
 import { ArrowUpDownIcon } from 'lucide-react';
-import { createArray, enumToArray } from '../../utils/array';
+import { enumToArray } from '../../utils/array';
 import { PageContent } from '../../components/ui/layout/PageContent';
 import { ExploreProfilesContent } from '../../domains/discovery/ExploreProfiles';
 import {
@@ -12,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from '../../components/ui/Dropdown';
 import { Button } from '../../components/ui/Button';
-import { VerticalImageCard } from '../../components/ui/VerticalImageCard';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export function ExploreProfilesSection() {
@@ -49,48 +48,24 @@ export function ExploreProfilesSection() {
           </DropdownMenu>
         }
       />
-      <Suspense
-        fallback={
-          <AnimatePresence>
+      <PageContent.ScrollControl>
+        <PageContent.ScrollControlContent>
+          <AnimatePresence mode="wait">
             <motion.div
-              key={`${orderBy}-loader`}
+              key={orderBy}
               initial={{ opacity: 0, y: 4 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 4 }}
-              className="pb-5"
             >
-              <PageContent.ScrollControl>
-                <PageContent.ScrollControlContent>
-                  <div className="flex space-x-4 pb-5">
-                    {createArray(5, (index) => {
-                      return <VerticalImageCard.Skeleton key={index} />;
-                    })}
-                  </div>
-                </PageContent.ScrollControlContent>
-              </PageContent.ScrollControl>
+              <ExploreProfilesContent orderBy={orderBy} />
             </motion.div>
           </AnimatePresence>
-        }
-      >
-        <PageContent.ScrollControl>
-          <PageContent.ScrollControlContent>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={orderBy}
-                initial={{ opacity: 0, y: 4 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 4 }}
-              >
-                <ExploreProfilesContent orderBy={orderBy} />
-              </motion.div>
-            </AnimatePresence>
-          </PageContent.ScrollControlContent>
-          <div className="flex gap-4">
-            <PageContent.ScrollContainerPrevIconButton className="ml-auto" />
-            <PageContent.ScrollContainerNextIconButton className="mr-6" />
-          </div>
-        </PageContent.ScrollControl>
-      </Suspense>
+        </PageContent.ScrollControlContent>
+        <div className="flex gap-4">
+          <PageContent.ScrollContainerPrevIconButton className="ml-auto" />
+          <PageContent.ScrollContainerNextIconButton className="mr-6" />
+        </div>
+      </PageContent.ScrollControl>
     </PageContent>
   );
 }
