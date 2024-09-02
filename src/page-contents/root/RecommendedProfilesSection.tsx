@@ -20,10 +20,10 @@ export function RecommendedProfilesSection() {
         description="Recommend"
         rightSlot={
           <Button
+            leftSlot={<ShuffleIcon className="h-4 w-4" />}
             variant={shuffle ? 'default' : 'secondary'}
             onClick={() => setShuffle((prev) => !prev)}
           >
-            <ShuffleIcon className="h-4 w-4" />
             Shuffle
           </Button>
         }

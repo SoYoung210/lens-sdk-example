@@ -25,9 +25,8 @@ export function ExploreProfilesSection() {
         description="Explore New Profile"
         rightSlot={
           <DropdownMenu>
-            <DropdownMenuTrigger>
-              <Button variant="secondary">
-                <ArrowUpDownIcon className="mr-2 h-4 w-4" />
+            <DropdownMenuTrigger asChild>
+              <Button variant="secondary" leftSlot={<ArrowUpDownIcon className="h-4 w-4" />}>
                 {ORDERBY_LABEL[orderBy]}
               </Button>
             </DropdownMenuTrigger>

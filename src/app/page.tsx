@@ -17,8 +17,8 @@ import { Separator } from '../components/ui/Separator';
 import { ConnectWalletOrLenProfile } from '../domains/auth/ConnectWalletAndProfileList';
 import { forwardRef, useState } from 'react';
 
-import { ExploreProfilesSection } from '../pages/root/ExploreProfilesSection';
-import { RecommendedProfilesSection } from '../pages/root/RecommendedProfilesSection';
+import { ExploreProfilesSection } from '../page-contents/root/ExploreProfilesSection';
+import { RecommendedProfilesSection } from '../page-contents/root/RecommendedProfilesSection';
 import { BookOpenIcon, CompassIcon } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { If } from '../components/utils/If';
