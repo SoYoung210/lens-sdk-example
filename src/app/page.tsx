@@ -128,7 +128,7 @@ const NavBarLinkButton = forwardRef<HTMLButtonElement, NavBarLinkButtonProps>((p
       <Link href={href} {...restProps}>
         {children}
         <If condition={isActive}>
-          <span className="absolute bottom-0 left-2/4-translate-x-1/2 w-1 h-1 bg-sky-600 rounded-full" />
+          <span className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-[0.21rem] h-[0.21rem] bg-sky-600 rounded-full" />
         </If>
       </Link>
     </Button>
