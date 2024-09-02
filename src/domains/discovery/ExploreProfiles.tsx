@@ -15,12 +15,7 @@ export function ExploreProfilesContent(props: UseExploreProfilesArgs) {
 
   if (loading) {
     return (
-      <motion.div
-        initial={false}
-        animate={{ opacity: 1, y: [4, 0] }}
-        exit={{ opacity: 0, y: 4 }}
-        className="pb-5"
-      >
+      <motion.div initial={false} animate={{ opacity: 1, y: [4, 0] }} exit={{ opacity: 0, y: 4 }}>
         <div className="flex space-x-4 pb-5">
           {createArray(5, (index) => {
             return <VerticalImageCard.Skeleton key={index} />;

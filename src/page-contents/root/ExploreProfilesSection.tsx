@@ -12,7 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '../../components/ui/Dropdown';
 import { Button } from '../../components/ui/Button';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 export function ExploreProfilesSection() {
   const [orderBy, setOrderBy] = useState(ExploreProfilesOrderByType.MostPublication);
@@ -50,16 +50,14 @@ export function ExploreProfilesSection() {
       />
       <PageContent.ScrollControl>
         <PageContent.ScrollControlContent>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={orderBy}
-              initial={{ opacity: 0, y: 4 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 4 }}
-            >
-              <ExploreProfilesContent orderBy={orderBy} />
-            </motion.div>
-          </AnimatePresence>
+          <motion.div
+            key={orderBy}
+            initial={{ opacity: 0, y: 4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+          >
+            <ExploreProfilesContent orderBy={orderBy} />
+          </motion.div>
         </PageContent.ScrollControlContent>
         <div className="flex gap-4">
           <PageContent.ScrollContainerPrevIconButton className="ml-auto" />
